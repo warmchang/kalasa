@@ -55,7 +55,7 @@ Bottle is a lightweight kv storage engine based on LSM-TREE.
 存储可以用来存储很多东西，而并非是数据库这一领域。可以这么理解数据库是一台汽车，那么`Bottle`是一台车的发动机。可以简单理解`Bottle`是一个对操作系统文件系统的`KV`抽象化封装，可以基于`Bottle`
 做为存储层，在`Bottle`层之上封装一些数据结构和对外服务的协议就可以实现一个数据库。
 
-![层次架构图](https://tva1.sinaimg.cn/large/e6c9d24egy1gzfrmt7qo4j21c20u0tai.jpg)
+![层次架构图](https://tva1.sinaimg.cn/large/e6c9d24egy1h03oi0y9nfj21b10u0jt7.jpg)
 
 本项目功能实现完全基于 [`bitcask`](https://blog.ibyte.me/post/bitcask-kvbase/) 论文所实现，另外本项目所用到一些知识和`卡内基梅隆大学`
 的`CMU 15-445: Database Systems
