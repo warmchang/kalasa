@@ -1,6 +1,6 @@
 // Open Source: MIT License
 // Author: Leon Ding <ding@ibyte.me>
-// Date: 2022/2/27 - 4:27 下午 - UTC/GMT+08:00
+// Date: 2022/2/27 - 4:27 PM - UTC/GMT+08:00
 
 package bottle
 
@@ -40,49 +40,37 @@ func (AESEncryptor) Decode(sd *SourceData) error {
 
 // aesEncrypt ASE encode
 func aesEncrypt(origData, key []byte) []byte {
-	// 分组秘钥
 	block, _ := aes.NewCipher(key)
-	// 获取秘钥块的长度
 	blockSize := block.BlockSize()
-	// 补全码
 	origData = PKCS7Padding(origData, blockSize)
-	// 加密模式
 	blockMode := cipher.NewCBCEncrypter(block, key[:blockSize])
-	// 创建数组
 	result := make([]byte, len(origData))
-	// 加密
 	blockMode.CryptBlocks(result, origData)
 	return result
 }
 
 // aesDecrypt  aes decode
 func aesDecrypt(bytes, key []byte) []byte {
-	// 分组秘钥
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		fmt.Println(err)
 	}
-	// 获取秘钥块的长度
 	blockSize := block.BlockSize()
-	// 加密模式
 	blockMode := cipher.NewCBCDecrypter(block, key[:blockSize])
-	// 创建数组
 	orig := make([]byte, len(bytes))
-	// 解密
 	blockMode.CryptBlocks(orig, bytes)
-	// 去补全码
 	orig = PKCS7UnPadding(orig)
 	return orig
 }
 
-// PKCS7Padding 补码
+// PKCS7Padding complement
 func PKCS7Padding(ciphertext []byte, blksize int) []byte {
 	padding := blksize - len(ciphertext)%blksize
 	plaintext := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(ciphertext, plaintext...)
 }
 
-// PKCS7UnPadding 去码
+// PKCS7UnPadding to the code
 func PKCS7UnPadding(origData []byte) []byte {
 	length := len(origData)
 	padding := int(origData[length-1])

@@ -1,6 +1,6 @@
 // Open Source: MIT License
 // Author: Leon Ding <ding@ibyte.me>
-// Date: 2022/2/27 - 4:26 下午 - UTC/GMT+08:00
+// Date: 2022/2/27 - 4:26 PM - UTC/GMT+08:00
 
 package bottle
 
@@ -90,8 +90,8 @@ func bufToFile(data []byte, file *os.File) (int, error) {
 }
 
 func (e *Encoder) Read(rec *record) (*Item, error) {
-	// 解析到数据实体
-	item := parseLog(rec)
+	// Parse to data entities
+	item := readAt(rec)
 
 	if e.enable && e.Encryptor != nil && item != nil {
 		// Decryption operation
@@ -110,10 +110,10 @@ func (e *Encoder) Read(rec *record) (*Item, error) {
 }
 
 // parseLog parse data item from files
-func parseLog(rec *record) *Item {
-	// 通过记录文件标识符查找到这个文件
+func readAt(rec *record) *Item {
+	// The file is found by the record file identifier
 	if file, ok := fileList[rec.FID]; ok {
-		// 截取数据段 尺寸窗口
+		// Intercept data segment size window
 		_, _ = file.Seek(int64(rec.Offset), 0)
 		data := make([]byte, rec.Size)
 		_, _ = file.Read(data)
@@ -124,7 +124,7 @@ func parseLog(rec *record) *Item {
 
 // binaryDecode you can parse  binary data into entity
 func binaryDecode(data []byte) *Item {
-	// 校验crc32
+	// Check the CRC 32
 	if binary.LittleEndian.Uint32(data[:4]) != crc32.ChecksumIEEE(data[4:]) {
 		return nil
 	}
@@ -136,7 +136,7 @@ func binaryDecode(data []byte) *Item {
 	item.ValueSize = binary.LittleEndian.Uint32(data[16:20])
 	item.CRC32 = binary.LittleEndian.Uint32(data[:4])
 
-	// 解析数据
+	// parse log data
 	item.Key, item.Value = make([]byte, item.KeySize), make([]byte, item.ValueSize)
 	copy(item.Key, data[itemPadding:itemPadding+item.KeySize])
 	copy(item.Value, data[itemPadding+item.KeySize:itemPadding+item.KeySize+item.ValueSize])

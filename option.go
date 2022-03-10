@@ -1,6 +1,6 @@
 // Open Source: MIT License
 // Author: Leon Ding <ding@ibyte.me>
-// Date: 2022/2/26 - 10:47 下午 - UTC/GMT+08:00
+// Date: 2022/2/26 - 10:47 PM - UTC/GMT+08:00
 
 package bottle
 
@@ -94,9 +94,6 @@ func pathBackslashes(path string) string {
 }
 
 // Checks whether the target path exists
-// 如果返回的错误为nil,说明文件或文件夹存在
-// 如果返回的错误类型使用os.IsNotExist()判断为true,说明文件或文件夹不存在
-// 如果返回的错误为其它类型,则不确定是否在存在
 func pathExists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {

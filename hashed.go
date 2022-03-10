@@ -1,6 +1,6 @@
 // Open Source: MIT License
 // Author: Leon Ding <ding@ibyte.me>
-// Date: 2022/2/27 - 3:58 下午 - UTC/GMT+08:00
+// Date: 2022/2/27 - 3:58 PM - UTC/GMT+08:00
 
 package bottle
 

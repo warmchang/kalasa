@@ -1,6 +1,6 @@
 // Open Source: MIT License
 // Author: Leon Ding <ding@ibyte.me>
-// Date: 2022/2/26 - 10:32 下午 - UTC/GMT+08:00
+// Date: 2022/2/26 - 10:32 PM - UTC/GMT+08:00
 
 package bottle
 
@@ -128,10 +128,10 @@ func Open(opt Option) error {
 	initialize()
 
 	if ok, err := pathExists(Root); ok {
-		// 目录存在 恢复数据
+		// The directory has recovered data. Procedure
 		return recoverData()
 	} else if err != nil {
-		// 如果有错误说明上面传入的文件不是目录或者非法
+		// If there is an error, the file is not a directory or is invalid
 		panic("The current path is invalid!!!")
 	}
 	// Create folder if it does not exist
@@ -143,14 +143,14 @@ func Open(opt Option) error {
 		panic("Failed to create a working directory!!!")
 	}
 
-	// 目录创建好了就可以创建活跃文件写数据
+	// Once the directory is created, you can create active files to write data
 	return createActiveFile()
 }
 
-// Load 通过配置文件加载
+// Load through a configuration file
 func Load(file string) error {
 	if path.Ext(file) != defaultConfigFileSuffix {
-		return errors.New("the current configuration file format is invalid")
+		panic("the current configuration file format is invalid")
 	}
 
 	v := viper.New()
@@ -234,8 +234,8 @@ func Put(key, value []byte, actionFunc ...func(action *Action)) (err error) {
 // Get gets the data object for the specified key
 func Get(key []byte) (data *Data) {
 	data = &Data{}
-	mutex.RLock()
-	defer mutex.RUnlock()
+	mutex.Lock()
+	defer mutex.Unlock()
 
 	sum64 := HashedFunc.Sum64(key)
 
@@ -288,7 +288,7 @@ func createActiveFile() error {
 	mutex.Lock()
 	defer mutex.Unlock()
 
-	// 初始化可写文件偏移量和文件标识符
+	// Initialize writable file offsets and file identifiers
 	writeOffset = 0
 	dataFileVersion++
 
@@ -313,7 +313,7 @@ func closeActiveFile() error {
 		return err
 	}
 
-	// 把之前的可写文件设置为只读
+	// Set the previous writable file to read-only
 	if file, err := openDataFile(FR, dataFileVersion); err == nil {
 		fileList[dataFileVersion] = file
 		return nil
@@ -334,7 +334,7 @@ func initialize() {
 		index = make(map[uint64]*record)
 	}
 
-	// 默认挂载5个文件描述符
+	// By default, five file descriptors are mounted
 	fileList = make(map[int64]*os.File, 5)
 }
 
@@ -385,23 +385,24 @@ func saveIndexToFile() (err error) {
 func recoverData() error {
 
 	if dataTotalSize() >= totalDataSize {
-		// 触发合并
+		// Trigger merger
 		if err := migrate(); err != nil {
 			return err
 		}
 	}
 
-	// 找到最后一次的数据文件看看有没有满
+	// Find the last data file and see if it's full
 	if file, err := findLatestDataFile(); err == nil {
 		info, _ := file.Stat()
 		if info.Size() >= defaultMaxFileSize {
 			if err := createActiveFile(); err != nil {
 				return err
 			}
-			// 数据满了则创建新的可写文件，并且构建索引
+			// When the data is full, a new writable file is created and an index is built
 			return buildIndex()
 		}
-		// 如果上次数据文件没有满则设置为可写，并且计算可写偏移量
+		// If the data file was not full last time
+		// it is set to writable and the writable offset is calculated
 		active = file
 		if offset, err := file.Seek(0, os.SEEK_END); err == nil {
 			writeOffset = uint32(offset)
@@ -414,12 +415,12 @@ func recoverData() error {
 
 // Trigger data file merge Dirty data merge
 func migrate() error {
-	// 加载索引和加载数据
+	// Load indexes and load data
 	if err := buildIndex(); err != nil {
 		return err
 	}
 
-	// 拿到数据最新的版本号
+	// Get the latest version of the data
 	version()
 
 	var (
@@ -430,15 +431,14 @@ func migrate() error {
 		activeItem   = make(map[uint64]*Item, len(index))
 	)
 
-	// 为新数据文件生成新的ID
 	dataFileVersion++
-	// 创建迁移的目标数据文件
+	// Create the target data file for migration
 	file, _ = openDataFile(FRW, dataFileVersion)
 	excludeFiles = append(excludeFiles, dataFileVersion)
-	// 拿到迁移文件状态
+	// Get the migration file status
 	fileInfo, _ = file.Stat()
 
-	// 把活跃的记录保存记录迁移
+	// Migrate active recordable
 	for idx, rec := range index {
 		item, err := encoder.Read(rec)
 
@@ -450,9 +450,9 @@ func migrate() error {
 	}
 
 	for idx, item := range activeItem {
-		// 每轮检测迁移文件是否阀值了
+		// Check whether the migration file threshold is reached at each turn
 		if fileInfo.Size() >= defaultMaxFileSize {
-			// 关闭并且设置为只读放入map
+			// Close and set too read-only to put into map
 			if err := file.Sync(); err != nil {
 				return err
 			}
@@ -460,7 +460,7 @@ func migrate() error {
 				return err
 			}
 
-			// 更新操作
+			// The update operation
 			dataFileVersion++
 			excludeFiles = append(excludeFiles, dataFileVersion)
 
@@ -469,14 +469,14 @@ func migrate() error {
 			offset = 0
 		}
 
-		// 把原来的内容写到新文件
+		// Write the original content to the new file
 		size, err := encoder.Write(item, file)
 
 		if err != nil {
 			return err
 		}
 
-		// 更新新文件ID和偏移量
+		// Update the new file ID and offset
 		index[idx].FID = dataFileVersion
 		index[idx].Size = uint32(size)
 		index[idx].Offset = offset
@@ -484,14 +484,14 @@ func migrate() error {
 		offset += uint32(size)
 	}
 
-	// 清理删除的数据
+	// Clear deleted data
 	fileInfos, err := ioutil.ReadDir(dataDirectory)
 
 	if err != nil {
 		return err
 	}
 
-	// 过滤掉已经被迁移的数据文件
+	// Filter out data files that have been migrated
 	for _, info := range fileInfos {
 		fileName := fmt.Sprintf("%s%s", dataDirectory, info.Name())
 		for _, excludeFile := range excludeFiles {
@@ -503,7 +503,7 @@ func migrate() error {
 		}
 	}
 
-	// 迁移完成保存最新的索引文件
+	// After the migration, save the latest index file
 	return saveIndexToFile()
 }
 
@@ -513,7 +513,7 @@ func buildIndex() error {
 		return err
 	}
 
-	// 从索引里面找到数据文件打开文件描述符
+	// Find the data file from the index and open the file descriptor
 	for _, record := range index {
 		// https://stackoverflow.com/questions/37804804/too-many-open-file-error-in-golang
 		if fileList[record.FID] == nil {

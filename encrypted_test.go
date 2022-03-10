@@ -1,6 +1,6 @@
 // Open Source: MIT License
 // Author: Leon Ding <ding@ibyte.me>
-// Date: 2022/3/4 - 2:56 下午 - UTC/GMT+08:00
+// Date: 2022/3/4 - 2:56 PM - UTC/GMT+08:00
 
 package bottle
 
@@ -62,7 +62,6 @@ func TestEncoding(t *testing.T) {
 }
 
 func TestBinaryEncode(t *testing.T) {
-	// 构建数据项
 	item := NewItem([]byte("foo"), []byte("bar"), uint64(time.Now().Unix()))
 	bytes := binaryEncode(item)
 	t.Log(bytes)
