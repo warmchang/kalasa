@@ -8,7 +8,6 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
-	"fmt"
 )
 
 // SourceData for encryption and decryption
@@ -51,10 +50,7 @@ func aesEncrypt(origData, key []byte) []byte {
 
 // aesDecrypt  aes decode
 func aesDecrypt(bytes, key []byte) []byte {
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		fmt.Println(err)
-	}
+	block, _ := aes.NewCipher(key)
 	blockSize := block.BlockSize()
 	blockMode := cipher.NewCBCDecrypter(block, key[:blockSize])
 	orig := make([]byte, len(bytes))
