@@ -2,7 +2,7 @@
 
 # Bottle
 
-Bottle is a lightweight kv storage engine based on Hash Table.
+Bottle is a lightweight kv storage engine based on a log structured Hash Table.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/auula/bottle)](https://goreportcard.com/report/github.com/auula/bottle)
 [![Release](https://img.shields.io/github/v/release/auula/bottle.svg?style=flat-square)](https://github.com/auula/bottle)
