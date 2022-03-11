@@ -15,7 +15,7 @@ func init() {
 	if err := bottle.Load("./config.yaml"); err != nil {
 		fmt.Println(err)
 	}
-	bottle.SetIndexSize(1000000)
+	bottle.SetIndexSize(100000)
 }
 
 func main() {
@@ -37,7 +37,6 @@ func main() {
 			}
 		}(i)
 	}
-	wg.Wait()
 
 	for i := 0; i < 100; i++ {
 		wg.Add(1)

@@ -91,7 +91,11 @@ func bufToFile(data []byte, file *os.File) (int, error) {
 
 func (e *Encoder) Read(rec *record) (*Item, error) {
 	// Parse to data entities
-	item := readAt(rec)
+	item, err := parseLog(rec)
+
+	if err != nil {
+		return nil, err
+	}
 
 	if e.enable && e.Encryptor != nil && item != nil {
 		// Decryption operation
@@ -110,16 +114,18 @@ func (e *Encoder) Read(rec *record) (*Item, error) {
 }
 
 // parseLog parse data item from files
-func readAt(rec *record) *Item {
+func parseLog(rec *record) (*Item, error) {
 	// The file is found by the record file identifier
 	if file, ok := fileList[rec.FID]; ok {
 		// Intercept data segment size window
-		_, _ = file.Seek(int64(rec.Offset), 0)
 		data := make([]byte, rec.Size)
-		_, _ = file.Read(data)
-		return binaryDecode(data)
+		_, err := file.ReadAt(data, int64(rec.Offset))
+		if err != nil {
+			return nil, err
+		}
+		return binaryDecode(data), nil
 	}
-	return nil
+	return nil, errors.New("no readable data file found")
 }
 
 // binaryDecode you can parse  binary data into entity

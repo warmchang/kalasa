@@ -234,8 +234,8 @@ func Put(key, value []byte, actionFunc ...func(action *Action)) (err error) {
 // Get gets the data object for the specified key
 func Get(key []byte) (data *Data) {
 	data = &Data{}
-	mutex.Lock()
-	defer mutex.Unlock()
+	mutex.RLock()
+	defer mutex.RUnlock()
 
 	sum64 := HashedFunc.Sum64(key)
 
