@@ -292,7 +292,7 @@ DataFileMaxSize: 536870912
 
 如果你发现了`bug`欢迎提`issue`或者发起`pull request`，我收到了消息会尽快回复你，另外欢迎各位`Gopher`提出自己意见，或者贡献做自己的代码也是可以的，另外我们也非常大家进入群进行存储相关技术交流。
 
-<img align="left" src="https://tva1.sinaimg.cn/large/e6c9d24egy1h02dqritndj20kw0qq76i.jpg" width = "300" height = "300" alt="WeChat" align=center />
+<img align="left" src="https://tva1.sinaimg.cn/large/e6c9d24egy1h0ffdst054j20kw0qq76m.jpg" width = "300" height = "300" alt="WeChat" align=center />
 
 ### 鸣谢Contributions
 
