@@ -29,7 +29,7 @@ var (
 // Validation verifying configuration Items
 func (o *Option) Validation() {
 	if o.Directory == "" {
-		panic("The data file directory cannot be empty")
+		panic("The data file directory cannot be empty!!!")
 	}
 
 	// The first one does not determine whether there is a backslash
@@ -46,7 +46,7 @@ func (o *Option) Validation() {
 
 	if o.Enable {
 		if len(o.Secret) < 16 && len(o.Secret) > 16 {
-			panic("The encryption key contains less than 16 characters")
+			panic("The encryption key contains less than 16 characters!!!")
 		}
 		Secret = []byte(o.Secret)
 		encoder = AES()

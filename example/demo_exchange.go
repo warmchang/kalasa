@@ -22,15 +22,21 @@ func init() {
 
 }
 
+type UserInfo struct {
+	Name  string
+	Age   uint8
+	Skill []string
+}
+
 func main() {
 
-	for i := 0; i < 1000; i++ {
-		bottle.Put([]byte("999"), bottle.Bson(&UserInfo{
-			Name:  fmt.Sprintf("user-%d", i),
-			Age:   22,
-			Skill: []string{"Java", "Go", "Rust"},
-		}))
-	}
+	//for i := 0; i < 1000; i++ {
+	//	bottle.Put([]byte("999"), bottle.Bson(&UserInfo{
+	//		Name:  fmt.Sprintf("user-%d", i),
+	//		Age:   22,
+	//		Skill: []string{"Java", "Go", "Rust"},
+	//	}))
+	//}
 
 	var u UserInfo
 
