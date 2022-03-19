@@ -92,9 +92,9 @@ func (d Data) Bool() bool {
 	if d.Item != nil {
 		b, err := strconv.ParseBool(string(d.Value))
 		if err != nil {
-			return b
+			return false
 		}
-		return false
+		return b
 	}
 	return false
 }
