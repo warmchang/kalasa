@@ -56,9 +56,6 @@ func (o *Option) Validation() {
 
 	indexDirectory = fmt.Sprintf("%sindex/", Root)
 
-	if o.DataFileMaxSize != 0 {
-		defaultMaxFileSize = o.DataFileMaxSize
-	}
 }
 
 // SetEncryptor Set up a custom encryption implementation
