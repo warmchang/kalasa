@@ -1,8 +1,8 @@
 <img align="right" src="bottle-log.svg" alt="bottle-kv-storage" width="200" height="200" />
 
-# Bottle
+# Flasche
 
-Bottle is a lightweight kv storage engine based on a log structured Hash Table.
+Flasche is a lightweight kv storage engine based on a log structured Hash Table.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/auula/bottle)](https://goreportcard.com/report/github.com/auula/bottle)
 [![Release](https://img.shields.io/github/v/release/auula/bottle.svg?style=flat-square)](https://github.com/auula/bottle)
