@@ -1,4 +1,4 @@
-<img align="right" src="bottle-log.svg" alt="bottle-kv-storage" width="200" height="200" />
+<img align="right" src="bottle-log.svg" alt="bottle-kv-storage" width="180" height="180" />
 
 # Flasche
 
