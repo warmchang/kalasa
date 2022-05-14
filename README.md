@@ -1,8 +1,8 @@
 <img align="right" src="bottle-log.svg" alt="bottle-kv-storage" width="180" height="180" />
 
-# ZetaDB
+# Kalasa
 
-Flasche is a lightweight kv storage engine based on a log structured Hash Table.
+Kalasa is a NoSQL database and provides more data structures for ease of use.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/auula/bottle)](https://goreportcard.com/report/github.com/auula/bottle)
 [![Release](https://img.shields.io/github/v/release/auula/bottle.svg?style=flat-square)](https://github.com/auula/bottle)
