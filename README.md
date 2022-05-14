@@ -1,6 +1,6 @@
 <img align="right" src="bottle-log.svg" alt="bottle-kv-storage" width="180" height="180" />
 
-# Flasche
+# ZetaDB
 
 Flasche is a lightweight kv storage engine based on a log structured Hash Table.
 
