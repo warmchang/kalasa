@@ -288,11 +288,16 @@ DataFileMaxSize: 536870912
 - 后续将引入`零拷贝技术`，当前文件操作很大程度上依赖于操作系统，当前文件必须`sync`才能保证数据一致性。
 - 脏数据合并可以在运行中进行合并整理，基于`信号量`的方式通知垃圾回收工作线程。
 
+### Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=auula/kalasa&type=Date)](https://star-history.com/#auula/kalasa&Date)
+
 ### 其他信息
 
 如果你发现了`bug`欢迎提`issue`或者发起`pull request`，我收到了消息会尽快回复你，另外欢迎各位`Gopher`提出自己意见，或者贡献做自己的代码也是可以的，另外我们也非常大家进入群进行存储相关技术交流。
 
 <img align="left" src="https://tva1.sinaimg.cn/large/e6c9d24egy1h0ffdst054j20kw0qq76m.jpg" width = "300" height = "300" alt="WeChat" align=center />
+
 
 ### 鸣谢Contributions
 
