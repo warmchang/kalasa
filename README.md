@@ -4,12 +4,12 @@
 
 Kalasa is a NoSQL database and provides more data structures for ease of use.
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/auula/bottle)](https://goreportcard.com/report/github.com/auula/bottle)
-[![Release](https://img.shields.io/github/v/release/auula/bottle.svg?style=flat-square)](https://github.com/auula/bottle)
+[![Go Report Card](https://goreportcard.com/badge/github.com/auula/kalasa)](https://goreportcard.com/report/github.com/auula/kalasa)
+[![Release](https://img.shields.io/github/v/release/auula/kalasa.svg?style=flat-square)](https://github.com/auula/kalasa)
 [![License](https://img.shields.io/badge/license-MIT-db5149.svg)](https://github.com/auula/bottle/blob/master/LICENSE)
-[![Go Reference](https://pkg.go.dev/badge/github.com/auula/bottle.svg)](https://pkg.go.dev/github.com/auula/bottle)
-[![codecov](https://codecov.io/gh/auula/bottle/branch/main/graph/badge.svg?token=ekQ3KzyXtm)](https://codecov.io/gh/auula/bottle)
-[![DeepSource](https://deepsource.io/gh/auula/bottle.svg/?label=active+issues&token=rdl-7kKKCfR0F8b0dojJd50U)](https://deepsource.io/gh/auula/bottle/?ref=repository-badge)
+[![Go Reference](https://pkg.go.dev/badge/github.com/auula/kalasa.svg)](https://pkg.go.dev/github.com/auula/kalasa)
+[![codecov](https://codecov.io/gh/auula/kalasa/branch/main/graph/badge.svg?token=ekQ3KzyXtm)](https://codecov.io/gh/auula/kalasa)
+[![DeepSource](https://deepsource.io/gh/auula/kalasa.svg/?label=active+issues&token=rdl-7kKKCfR0F8b0dojJd50U)](https://deepsource.io/gh/auula/kalasa/?ref=repository-badge)
 
 ---
 
