@@ -2,7 +2,7 @@
 
 # Rosetta
 
-Rosetta is a Simple and portable key-value storage engine.
+Rosetta is a simple and portable key-value storage engine.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/auula/kalasa)](https://goreportcard.com/report/github.com/auula/kalasa)
 [![Release](https://img.shields.io/github/v/release/auula/kalasa.svg?style=flat-square)](https://github.com/auula/kalasa)
