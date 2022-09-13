@@ -1,8 +1,8 @@
 <img align="right" src="bottle-log.svg" alt="bottle-kv-storage" width="180" height="180" />
 
-# Kalasa
+# Rosetta
 
-Kalasa is a NoSQL database and provides more data structures for ease of use.
+Rosetta is a Simple and portable key-value storage engine.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/auula/kalasa)](https://goreportcard.com/report/github.com/auula/kalasa)
 [![Release](https://img.shields.io/github/v/release/auula/kalasa.svg?style=flat-square)](https://github.com/auula/kalasa)
