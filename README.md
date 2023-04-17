@@ -1,8 +1,8 @@
-<img align="right" src="bottle-log.svg" alt="bottle-kv-storage" width="180" height="180" />
+<img align="center" src="https://img.ibyte.me/4i377v.png" alt="class-db" width="1000" height="230" />
 
-# Rosetta
+<p align="center">ClassDB is a NoSQL that supports multiple data types and transactions.<p>
 
-Rosetta is a simple and portable key-value storage engine.
+---
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/auula/kalasa)](https://goreportcard.com/report/github.com/auula/kalasa)
 [![Release](https://img.shields.io/github/v/release/auula/kalasa.svg?style=flat-square)](https://github.com/auula/kalasa)
